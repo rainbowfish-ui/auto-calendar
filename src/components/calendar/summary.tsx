@@ -3,8 +3,8 @@ import React from "react";
 
 const Summary = () => {
   return (
-    <div className="w-96 h-screen flex flex-col pt-8 overflow-y-scroll no-scrollbar pl-4 gap-2">
-      <h3 className="text-lg font-semibold">Summary</h3>
+    <div className="w-96 h-screen flex flex-col pt-10 overflow-y-scroll no-scrollbar pl-4 gap-2">
+      <h3 className="text-lg font-semibold">AI Summary</h3>
       <div className="w-full h-fit flex flex-wrap gap-1">
         <Image
           className="size-10 rounded-full object-cover border"

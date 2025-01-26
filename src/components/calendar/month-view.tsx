@@ -4,21 +4,31 @@ import React from "react";
 
 const MonthView = () => {
   const currentMonth = getMonth();
+  const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <section className="grid grid-cols-7 grid-rows-5 size-fit rounded-xl gap-1 ">
-      {currentMonth.map((week) => {
-        return week.map((day, index) => {
+    <section className="size-full flex ">
+      <div className="grid grid-cols-7 grid-rows-6 w-full border-[0.5px]">
+        {weekDays.map((day) => {
           return (
-            <div
-              key={day.format("D") + index}
-              className="flex justify-center items-center border rounded-lg size-28"
-            >
-              {day.format("D")}
+            <div className="w-full flex items-center justify-center border-[0.5px]">
+              {day}
             </div>
           );
-        });
-      })}
+        })}
+        {currentMonth.map((week) => {
+          return week.map((day, index) => {
+            return (
+              <div
+                key={day.format("D") + index}
+                className="flex justify-center items-center border-[0.5px] size-full"
+              >
+                {day.format("D")}
+              </div>
+            );
+          });
+        })}
+      </div>
     </section>
   );
 };
