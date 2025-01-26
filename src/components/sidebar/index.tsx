@@ -2,12 +2,12 @@ import React from "react";
 import { CiCalendar } from "react-icons/ci";
 import { GoTasklist } from "react-icons/go";
 import { IoIosSearch } from "react-icons/io";
-import { LiaTeamspeak } from "react-icons/lia";
+import { PiShootingStarLight } from "react-icons/pi";
 
 const Sidebar = () => {
   return (
     <div className="w-16 h-full bg-[#F4F5F7] flex flex-col items-center justify-start py-4 gap-6 border-r">
-      <LiaTeamspeak size={30} />
+      <PiShootingStarLight size={30} />
       <nav className="size-full flex flex-col gap-2 items-start p-2">
         <button className="rounded-lg p-3 relative group">
           <div className="w-fit h-fit rounded-md absolute bg-[#D6D7E0] text-gray-800 left-12 top-1 text-xs p-2 hidden group-hover:block">
