@@ -7,7 +7,7 @@ const MonthView = () => {
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <section className="size-full flex ">
+    <section className="size-full h-[80vh] flex">
       <div className="grid grid-cols-7 grid-rows-6 w-full border-[0.5px]">
         {weekDays.map((day) => {
           return (
