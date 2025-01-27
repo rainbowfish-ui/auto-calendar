@@ -3,7 +3,7 @@ import React from "react";
 
 const Summary = () => {
   return (
-    <div className="w-96 h-screen flex flex-col pt-10 overflow-y-scroll no-scrollbar pl-4 gap-2">
+    <div className="w-72 h-screen flex flex-col pt-10 overflow-y-scroll no-scrollbar pl-4 gap-2 shrink-0">
       <h3 className="text-lg font-semibold">AI Summary</h3>
       <div className="w-full h-fit flex flex-wrap gap-1">
         <Image
@@ -14,17 +14,17 @@ const Summary = () => {
           alt="img"
         />
         <Image
-          className="size-10 rounded-full object-cover border"
+          className="size-10 rounded-full object-cover border "
           src="https://cdn3.pixelcut.app/7/20/uncrop_hero_bdf08a8ca6.jpg"
           width={1}
           height={1}
           alt="img"
         />
-        <div className="size-10 rounded-full border flex items-center justify-center font-semibold">
+        <div className="size-10 rounded-full border flex items-center justify-center font-semibold shrink-0">
           AG
         </div>
       </div>
-      <div className="text-xs">
+      <div className="text-xs ">
         Today's calls cover project updates, client feedback, design reviews,
         vendor onboarding, and leadership discussions on strategy and resource
         planning.
