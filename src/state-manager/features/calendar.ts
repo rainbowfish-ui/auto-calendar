@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type Calendar = {
-  view: "week" | "month";
+export type CalendarType = {
+  view: "Week" | "Month";
 };
 
-const initialState: Calendar = {
-  view: "week",
+const initialState: CalendarType = {
+  view: "Week",
 };
 
 const calendar = createSlice({
   name: "calendar",
   initialState: initialState,
   reducers: (create) => ({
-    setView: create.reducer<Calendar["view"]>((state, action) => {
+    setCalendarView: create.reducer<CalendarType["view"]>((state, action) => {
       state.view = action.payload;
     }),
   }),
 });
 
-export const { setView } = calendar.actions;
+export const { setCalendarView } = calendar.actions;
 export default calendar.reducer;
