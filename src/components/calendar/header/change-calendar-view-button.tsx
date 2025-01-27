@@ -7,21 +7,21 @@ import {
   CalendarType,
   setCalendarView,
 } from "@/state-manager/features/calendar";
+import { useQueryState } from "nuqs";
 
 const ChangeCalendarViewButton = () => {
   const views: CalendarType["view"][] = ["Week", "Month"];
-  const [selector, setSelector] = useState(false);
-  const { view } = useSelector((state: RootState) => state.calendar);
-  const dispatch = useDispatch();
+  const [viewSelector, setViewSelector] = useState(false);
+  const [view, setView] = useQueryState("view", { defaultValue: "Week" });
 
   const handleSelector = (e: React.MouseEvent) => {
-    setSelector(!selector);
+    setViewSelector(!viewSelector);
     const target = e.target as HTMLElement;
     if (target.getAttribute("data-calendar-view")) {
       const view = target.getAttribute(
         "data-calendar-view"
       ) as CalendarType["view"];
-      dispatch(setCalendarView(view));
+      setView(view);
     }
   };
 
@@ -33,7 +33,7 @@ const ChangeCalendarViewButton = () => {
       <p className="flex items-center gap-2">
         {view} <IoIosArrowDown />
       </p>
-      {selector && (
+      {viewSelector && (
         <div className="absolute bg-white border rounded-md flex flex-col items-center justify-center top-8 left-0 w-full z-10">
           {views.map((view) => {
             return (
