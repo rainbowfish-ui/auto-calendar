@@ -10,6 +10,7 @@ import { useQueryState } from "nuqs";
 
 const MainView = () => {
   const [view] = useQueryState("view", { defaultValue: "Week" });
+  console.log("main", view);
   return (
     <div className="w-full h-screen overflow-hidden flex pr-10">
       <Summary />
