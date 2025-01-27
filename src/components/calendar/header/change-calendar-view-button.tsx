@@ -1,12 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/state-manager/store";
-import {
-  CalendarType,
-  setCalendarView,
-} from "@/state-manager/features/calendar";
+import { CalendarType } from "@/state-manager/features/calendar";
 import { useQueryState } from "nuqs";
 
 const ChangeCalendarViewButton = () => {
