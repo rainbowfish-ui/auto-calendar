@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "@/providers/redux-provider";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import Sidebar from "@/components/sidebar";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -20,8 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className}`}>
-        <ReduxProvider>{children}</ReduxProvider>
+      <body
+        className={`${poppins.className} relative w-full h-screen overflow-hidden flex`}
+      >
+        <NuqsAdapter>
+          <ReduxProvider>
+            <Sidebar />
+            {children}
+          </ReduxProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );
