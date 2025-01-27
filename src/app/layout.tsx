@@ -4,6 +4,7 @@ import "./globals.css";
 import ReduxProvider from "@/providers/redux-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import Sidebar from "@/components/sidebar";
+import AiAssistant from "@/components/ai-assistant";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <NuqsAdapter>
           <ReduxProvider>
             <Sidebar />
+            <AiAssistant />
             {children}
           </ReduxProvider>
         </NuqsAdapter>
