@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import MonthView from "./month-view";
-import Sidebar from "../sidebar";
 import Summary from "../summary";
 import WeekView from "./week-view";
 import Header from "./header";
