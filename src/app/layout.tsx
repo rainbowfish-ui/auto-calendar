@@ -23,15 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.className} relative w-full h-screen overflow-hidden flex`}
-      >
+      <body className={`${poppins.className}`}>
         <NuqsAdapter>
-          <ReduxProvider>
-            <Sidebar />
-            <AiAssistant />
-            {children}
-          </ReduxProvider>
+          <ReduxProvider>{children}</ReduxProvider>
         </NuqsAdapter>
       </body>
     </html>
