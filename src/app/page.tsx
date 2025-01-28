@@ -1,5 +1,6 @@
 import Calendar from "@/components/calendar";
+import LandingPage from "@/components/landing";
 
 export default function Home() {
-  return <div className="size-full">Landing page</div>;
+  return <LandingPage />;
 }

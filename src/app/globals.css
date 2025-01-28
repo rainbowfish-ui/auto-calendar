@@ -13,3 +13,46 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+*::selection {
+  background-color: rgb(38, 38, 38);
+  color: white;
+}
+
+.dashed-vertical-border {
+  border-top: none;
+  border-left: 1.5px solid transparent;
+  border-right: 1.5px solid transparent;
+  border-image: repeating-linear-gradient(
+      to bottom,
+      rgb(164, 164, 164) 0px,
+      rgb(164, 164, 164) 10px,
+      transparent 10px,
+      transparent 30px
+    )
+    1;
+}
+
+.dashed-bottom-border {
+  border-bottom: 1.5px solid transparent;
+  border-image: repeating-linear-gradient(
+      to right,
+      rgb(164, 164, 164) 0px,
+      rgb(164, 164, 164) 10px,
+      transparent 10px,
+      transparent 24px
+    )
+    1;
+}
+
+.gradient_text {
+  background: -webkit-linear-gradient(#888787, #4b4b4b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gradient_text::selection {
+  background-color: rgb(38, 38, 38);
+  background: rgb(38, 38, 38);
+  -webkit-text-fill-color: whitesmoke;
+}
