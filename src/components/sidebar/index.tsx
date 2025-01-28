@@ -37,10 +37,10 @@ const Sidebar = () => {
               key={name}
               href={href}
               className={`rounded-lg p-3 relative group ${
-                href === pathname ? "bg-[#d9d9d9]" : ""
+                href === pathname ? "bg-[#e6e6e6]" : ""
               }`}
             >
-              <div className="w-fit h-fit rounded-md absolute bg-[#d9d9d9] left-12 top-1 text-xs p-2 hidden group-hover:block">
+              <div className="w-fit h-fit rounded-md absolute bg-[#e6e6e6] left-12 top-1 text-xs p-2 hidden group-hover:block">
                 {name}
               </div>
               <Icon size={18} />
