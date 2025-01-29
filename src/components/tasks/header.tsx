@@ -18,7 +18,7 @@ const Header = ({ projects }: any) => {
           );
         })}
       </div>
-      <button className="px-2 py-1 rounded-md transition-colors border border-white hover:border-[#E4E7EB] hover:bg-[#F9FAFC] bg-white flex items-center gap-1 text-xs">
+      <button className="px-2 py-1 rounded-md transition-transform border border-[#E4E7EB] bg-[#F9FAFC] flex items-center gap-1 text-xs active:scale-95">
         <BiPlus size={16} /> New Project
       </button>
     </div>
