@@ -1,17 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Project from "./project";
 import Header from "./header";
-import { projects } from "@/db/projects";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
 import { useQuery } from "@tanstack/react-query";
 import { getProjectById } from "@/app/actions/get-project-by-id";
 import { PiSpinnerLight } from "react-icons/pi";
+import { setProject } from "@/state-manager/features/project";
 
 const Tasks = () => {
   const [activeCard, setActiveCard] = useState(null);
-  const { activeProject } = useSelector((state: RootState) => state.projects);
+  const { activeProject, project: localProject } = useSelector(
+    (state: RootState) => state.project
+  );
+  const dispatch = useDispatch();
 
   const { data: project, isLoading } = useQuery({
     queryKey: ["active-project", activeProject],
@@ -19,27 +22,41 @@ const Tasks = () => {
     enabled: !!activeProject,
   });
 
+  useEffect(() => {
+    if (!isLoading && project) {
+      dispatch(setProject(project));
+    }
+  }, [isLoading, project, dispatch]);
+
   function onDrop(
     from: { fromTeam: number; index: number },
     to: { toTeam: number; index: number }
   ) {
-    const project = projects.find((proj) => proj.isActive);
+    if (!localProject) return;
 
-    if (!project) return;
-    const sourceTeam = project.teams[from.fromTeam];
-    const destinationTeam = project.teams[to.toTeam];
+    const updatedTeams = [...localProject.teams];
+    const sourceTeam = {
+      ...updatedTeams[from.fromTeam],
+      tasks: [...updatedTeams[from.fromTeam].tasks],
+    };
+    const destinationTeam = {
+      ...updatedTeams[to.toTeam],
+      tasks: [...updatedTeams[to.toTeam].tasks],
+    };
 
-    if (!sourceTeam || !destinationTeam) {
-      console.log("Team not found");
-    }
     const [movedTask] = sourceTeam.tasks.splice(from.index, 1);
     if (!movedTask) {
-      console.log("Error");
+      console.error("Error moving task");
+      return;
     }
-    destinationTeam.tasks.splice(to.index, 0, movedTask);
 
-    return { ...project, teams: [...project.teams] };
+    destinationTeam.tasks.splice(to.index, 0, movedTask);
+    updatedTeams[from.fromTeam] = sourceTeam;
+    updatedTeams[to.toTeam] = destinationTeam;
+
+    dispatch(setProject({ ...localProject, teams: updatedTeams }));
   }
+
   return (
     <div className="h-screen w-fit pl-4">
       <Header />
@@ -49,22 +66,24 @@ const Tasks = () => {
             <PiSpinnerLight className="animate-spin" size={30} />
           </div>
         )}
-        {project &&
-          project.teams?.map(({ members, name, tasks }: any, index: number) => {
-            return (
-              <Project
-                setActiveCard={setActiveCard}
-                name={name}
-                members={members}
-                tasks={tasks}
-                key={name + index}
-                projectName={project.name}
-                onDrop={onDrop}
-                activeCard={activeCard}
-                teamIndex={index}
-              />
-            );
-          })}
+        {localProject &&
+          localProject.teams?.map(
+            ({ members, name, tasks }: any, index: number) => {
+              return (
+                <Project
+                  setActiveCard={setActiveCard}
+                  name={name}
+                  members={members}
+                  tasks={tasks}
+                  key={name + index}
+                  projectName={project?.name}
+                  onDrop={onDrop}
+                  activeCard={activeCard}
+                  teamIndex={index}
+                />
+              );
+            }
+          )}
       </div>
     </div>
   );

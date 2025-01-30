@@ -1,6 +1,6 @@
 "use client";
 import { getAllProjectsNames } from "@/app/actions/get-all-projects-names";
-import { setActiveProject } from "@/state-manager/features/projects";
+import { setActiveProject } from "@/state-manager/features/project";
 import { RootState } from "@/state-manager/store";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ProjectList = () => {
   const dispatch = useDispatch();
-  const { activeProject } = useSelector((state: RootState) => state.projects);
+  const { activeProject } = useSelector((state: RootState) => state.project);
   const { data: projectNames, isLoading } = useQuery({
     queryKey: ["project-names"],
     queryFn: () => getAllProjectsNames(),
