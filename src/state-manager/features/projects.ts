@@ -1,16 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type ProjectsType = {};
+export type ProjectsType = {
+  activeProject: string;
+};
 
-const initialState: ProjectsType = {};
+const initialState: ProjectsType = {
+  activeProject: "",
+};
 
 const tasks = createSlice({
   name: "project",
   initialState: initialState,
   reducers: (create) => ({
-    setProject: create.reducer<ProjectsType>((state, action) => {}),
+    setActiveProject: create.reducer<string>((state, action) => {
+      state.activeProject = action.payload;
+    }),
   }),
 });
 
-export const { setProject } = tasks.actions;
+export const { setActiveProject } = tasks.actions;
 export default tasks.reducer;

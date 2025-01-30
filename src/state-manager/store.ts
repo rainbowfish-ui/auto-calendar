@@ -1,7 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import calendar from "./features/calendar";
+import projects from "./features/projects";
 
-const reducer = combineReducers({ calendar });
+const reducer = combineReducers({ calendar, projects });
 
 export const store = configureStore({
   reducer,
