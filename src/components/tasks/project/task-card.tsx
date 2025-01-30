@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { IoIosMore } from "react-icons/io";
+import { TbPointFilled } from "react-icons/tb";
 
 const TaskCard = ({
   members,
@@ -8,12 +9,28 @@ const TaskCard = ({
   teamIndex,
   setActiveCard,
   index,
+  assignedTo,
+  due,
+  keyPoints,
+  priority,
+  status,
+  lastUpdate,
+  lastUpdateBy,
+  lastUpdateOn,
 }: {
   members: any;
   name: string;
   teamIndex: number;
   setActiveCard: any;
   index: number;
+  assignedTo: string[];
+  due: string;
+  status: string;
+  lastUpdate: string;
+  lastUpdateBy: string;
+  priority: string;
+  lastUpdateOn: string;
+  keyPoints: string[];
 }) => {
   return (
     <article
@@ -27,15 +44,16 @@ const TaskCard = ({
           <div>
             <p className="text-xs text-start pt-1">{name}</p>
             <div className="flex flex-wrap text-[0.5rem]">
-              <p className="size-5 rounded-full border grid place-content-center">
-                AG
-              </p>
-              <p className="size-5 rounded-full border grid place-content-center">
-                SN
-              </p>
-              <p className="size-5 rounded-full border grid place-content-center">
-                G
-              </p>
+              {assignedTo.map((name) => {
+                return (
+                  <p
+                    className="size-5 rounded-full border grid place-content-center uppercase"
+                    key={name}
+                  >
+                    {name.substring(0, 2)}
+                  </p>
+                );
+              })}
             </div>
           </div>
           <button>
@@ -44,28 +62,30 @@ const TaskCard = ({
         </div>
         <div className="min-h-10 h-fit w-full px-2 py-1">
           <div className="text-[0.6rem] flex items-center justify-between">
-            <p>Priority: High</p>
-            <p>Due: 22/02/2025</p>
+            <p>Priority: {priority}</p>
+            <p>Due: {due}</p>
           </div>
           <div className="w-full h-1 border rounded-full relative">
             <div className="w-[40%] h-full bg-gray-600 rounded-full"></div>
           </div>
-          <div className="size-full text-[0.6rem] leading-3 pt-1">
-            <p>Key:</p>
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
+          <div className="size-full text-[0.6rem] leading-3 pt-1 gap-1">
+            <p>Key Points:</p>
+            {keyPoints?.map((point) => {
+              return (
+                <div className="flex gap-1">
+                  <TbPointFilled className="pt-1" />
+                  <p>{point}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
       <div className="h-fit w-full border-t shrink-0 px-1 pt-1 text-[0.6rem] text-gray-500">
         <p className="leading-3">
-          Last update: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Adipisci ex repellat veritatis facere asperiores molestiae unde
-          provident neque ullam cumque! - subhash
+          Last update: {lastUpdate} -{lastUpdateBy}
         </p>
-        <p className="w-full text-end">29/01/2025, 12:30PM</p>
+        <p className="w-full text-end"> {lastUpdateOn}</p>
       </div>
     </article>
   );

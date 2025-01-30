@@ -41,6 +41,14 @@ const Project = ({
                 name={task.name}
                 setActiveCard={setActiveCard}
                 teamIndex={teamIndex}
+                assignedTo={task.assignedTo}
+                due={task.due}
+                status={task.status}
+                priority={task.priority}
+                keyPoints={task.keyPoints}
+                lastUpdate={task.lastUpdate}
+                lastUpdateBy={task.lastUpdateBy}
+                lastUpdateOn={task.lastUpdateOn}
               />
               <DropArea
                 index={i + 1}
