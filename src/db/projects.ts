@@ -15,6 +15,7 @@ export const projects = [
             assignedTo: ["Sophia Walker"],
             status: "In Progress",
             priority: "High",
+            progress: 70,
             due: "2025-03-05",
             keyPoints: [
               "Ensure consistency in colors, typography, and spacing.",
@@ -32,6 +33,7 @@ export const projects = [
             assignedTo: ["Liam Moore"],
             status: "In Progress",
             priority: "Medium",
+            progress: 50,
             due: "2025-03-10",
             keyPoints: [
               "Refine mobile layouts for better user experience.",
@@ -59,6 +61,7 @@ export const projects = [
             assignedTo: ["Emma Scott"],
             status: "In Progress",
             priority: "High",
+            progress: 60,
             due: "2025-03-15",
             keyPoints: [
               "Convert design components into reusable React components.",
@@ -75,6 +78,7 @@ export const projects = [
             assignedTo: ["James Carter", "Noah Brown"],
             status: "Not Started",
             priority: "Medium",
+            progress: 0,
             due: "2025-03-20",
             keyPoints: [
               "Implement homepage, about, and services pages.",
@@ -91,6 +95,7 @@ export const projects = [
             assignedTo: ["James Carter", "Noah Brown"],
             status: "Not Started",
             priority: "High",
+            progress: 0,
             due: "2025-03-25",
             keyPoints: [
               "Connect frontend to backend endpoints.",
@@ -107,6 +112,7 @@ export const projects = [
             assignedTo: ["James Carter", "Noah Brown"],
             status: "Not Started",
             priority: "Medium",
+            progress: 0,
             due: "2025-03-30",
             keyPoints: [
               "Write tests for key components and functions.",
@@ -135,6 +141,7 @@ export const projects = [
             assignedTo: ["Emma Scott"],
             status: "In Progress",
             priority: "High",
+            progress: 40,
             due: "2025-03-12",
             keyPoints: [
               "Optimize endpoint performance and security.",
@@ -151,6 +158,7 @@ export const projects = [
             assignedTo: ["James Carter", "Noah Brown"],
             status: "Not Started",
             priority: "High",
+            progress: 0,
             due: "2025-03-18",
             keyPoints: [
               "Analyze slow queries and optimize indexing.",
@@ -178,6 +186,7 @@ export const projects = [
             assignedTo: ["Olivia Adams"],
             status: "In Progress",
             priority: "High",
+            progress: 30,
             due: "2025-03-22",
             keyPoints: [
               "Test all core functionalities of the application.",
