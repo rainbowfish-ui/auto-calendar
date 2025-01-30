@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
+    "@tanstack/react-query": "^5.65.1",
     "dayjs": "^1.11.13",
     "next": "14.2.16",
     "nuqs": "^2.3.1",
