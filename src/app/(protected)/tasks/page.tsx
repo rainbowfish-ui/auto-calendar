@@ -4,7 +4,7 @@ import React from "react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Auto Tasks",
+  title: "Auto Task",
   description: "Project by subhash",
 };
 
