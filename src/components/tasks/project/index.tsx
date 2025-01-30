@@ -50,6 +50,7 @@ const Project = ({
                 lastUpdate={task.lastUpdate}
                 lastUpdateBy={task.lastUpdateBy}
                 lastUpdateOn={task.lastUpdateOn}
+                progress={task.progress}
               />
               <DropArea
                 index={i + 1}
