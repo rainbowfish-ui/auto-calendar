@@ -203,4 +203,10 @@ export const projects = [
       },
     ],
   },
+  {
+    id: "125",
+    name: "vectal ai",
+    isActive: false,
+    teams: [],
+  },
 ];
