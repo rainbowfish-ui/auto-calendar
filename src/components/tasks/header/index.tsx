@@ -1,23 +1,11 @@
 import React from "react";
 import { BiPlus } from "react-icons/bi";
+import ProjectList from "./project-list";
 
 const Header = ({ projects }: any) => {
   return (
     <div className="w-full h-12 flex items-center justify-between gap-2 rounded-t-lg px-4">
-      <div className="flex gap-4 items-center text-sm">
-        {projects.map(({ name, isActive }: any) => {
-          return (
-            <button
-              className={`py-1 text-nowrap transition-colors border-b border-white hover:border-[#c4c4c4] flex items-center ${
-                isActive ? "border-[#9f9f9f]" : ""
-              }`}
-              key={"head" + name}
-            >
-              {name}
-            </button>
-          );
-        })}
-      </div>
+      <ProjectList />
       <div className="flex gap-2 items-center text-xs">
         <button className="px-2 py-1 rounded-md transition-transform border border-[#E4E7EB] bg-[#F9FAFC] flex items-center gap-1 active:scale-95">
           <BiPlus size={16} /> Team
