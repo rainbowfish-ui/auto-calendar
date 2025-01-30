@@ -29,7 +29,7 @@ const Tasks = () => {
   }
   return (
     <div className="h-screen w-fit pl-4">
-      <Header projects={projects} />
+      <Header />
       <div className="h-screen w-[70vw] flex overflow-scroll gap-4 p-2 no-scrollbar pb-44">
         {projects.map(({ isActive, name: projectName, teams }) => {
           return (
