@@ -1,12 +1,12 @@
 "use server";
+import { BASE_URL } from "./constants";
 
-const getProjectById = async (projectId: string) => {
-  const baseUrl = process.env.BASE_URL;
+export const getProjectById = async (projectId: string) => {
   const project = await fetch(
-    `${baseUrl}/api/projects?projectId=${projectId}`,
+    `${BASE_URL}/api/projects?projectId=${projectId}`,
     {
       method: "GET",
     }
   );
-  return project;
+  return project.json();
 };
