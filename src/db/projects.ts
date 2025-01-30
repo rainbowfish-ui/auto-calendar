@@ -95,7 +95,7 @@ export const projects = [
             assignedTo: ["James Carter", "Noah Brown"],
             status: "Not Started",
             priority: "High",
-            progress: 0,
+            progress: 6,
             due: "2025-03-25",
             keyPoints: [
               "Connect frontend to backend endpoints.",
@@ -112,7 +112,7 @@ export const projects = [
             assignedTo: ["James Carter", "Noah Brown"],
             status: "Not Started",
             priority: "Medium",
-            progress: 0,
+            progress: 3,
             due: "2025-03-30",
             keyPoints: [
               "Write tests for key components and functions.",
@@ -141,7 +141,7 @@ export const projects = [
             assignedTo: ["Emma Scott"],
             status: "In Progress",
             priority: "High",
-            progress: 40,
+            progress: 95,
             due: "2025-03-12",
             keyPoints: [
               "Optimize endpoint performance and security.",
