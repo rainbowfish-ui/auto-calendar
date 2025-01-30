@@ -42,7 +42,7 @@ const Tasks = () => {
                       name={name}
                       members={members}
                       tasks={tasks}
-                      key={name}
+                      key={name + index}
                       projectName={projectName}
                       onDrop={onDrop}
                       activeCard={activeCard}
