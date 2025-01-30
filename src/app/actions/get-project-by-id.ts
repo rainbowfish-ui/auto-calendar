@@ -3,7 +3,7 @@ import { BASE_URL } from "./constants";
 
 export const getProjectById = async (projectId: string) => {
   const project = await fetch(
-    `${BASE_URL}/api/projects?projectId=${projectId}`,
+    `${BASE_URL}/api/project?projectId=${projectId}`,
     {
       method: "GET",
     }
