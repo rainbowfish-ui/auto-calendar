@@ -123,7 +123,7 @@ const Summary = () => {
         </div>
       )}
       {pathname === "/tasks" && (
-        <div className="size-full flex flex-col text-xs gap-2">
+        <div className="size-full flex flex-col text-xs gap-2 h-screen overflow-y-scroll pb-60 no-scrollbar">
           <div>
             <p>
               <span className="font-semibold">
@@ -154,8 +154,8 @@ const Summary = () => {
               bugs, ensuring a smooth user experience.
             </p>
           </div>
-          <div className="flex flex-col gap-1">
-            <p className="text-sm font-semibold">Last Updates & Progress:</p>
+          <div className="flex flex-col gap-0.5">
+            <p className="text-base font-semibold">Last Updates & Progress:</p>
             <p>
               <span className="font-semibold">Finalizing UI Components</span>-
               In Progress ✅ (Last update: Jan 20, 2025)
@@ -173,6 +173,33 @@ const Summary = () => {
               <span className="text-red-500">
                 In Progress 🔍 (Last update: Jan 12, 2025)
               </span>
+            </p>
+          </div>
+          <div className="size-full">
+            <p className="font-semibold text-base">AI Suggestions</p>
+            <p>
+              <span className="font-semibold">Parallel Execution: </span>
+              Backend refactoring & API dev should run simultaneously with UI
+              implementation.
+            </p>
+            <p>
+              <span className="font-semibold">High-Priority Focus: </span>
+              Finish UI Components by Feb 15 → Speeds up frontend dev. Complete
+              API Integration by March 10 → Allows early testing. Start
+              Functional Testing by March 15 → Avoids last-minute bug fixes.
+            </p>
+            <p>
+              <span className="font-semibold">
+                Daily Check-ins & Risk Management:
+              </span>
+              15-min daily standups to resolve blockers fast. Assign a dedicated
+              bug-fix team to tackle issues immediately.
+            </p>
+            <p>
+              <span className="font-semibold">
+                Team Adjustments & Support:{" "}
+              </span>
+              Add 1 more frontend dev if possible.
             </p>
           </div>
         </div>
