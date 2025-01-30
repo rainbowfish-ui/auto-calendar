@@ -36,6 +36,7 @@ const Project = ({
           return (
             <React.Fragment key={task.name}>
               <TaskCard
+                key={task.name + i}
                 index={i}
                 members={task.members}
                 name={task.name}

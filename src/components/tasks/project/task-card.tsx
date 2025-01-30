@@ -44,11 +44,11 @@ const TaskCard = ({
           <div>
             <p className="text-xs text-start pt-1">{name}</p>
             <div className="flex flex-wrap text-[0.5rem]">
-              {assignedTo.map((name) => {
+              {assignedTo.map((name, i) => {
                 return (
                   <p
                     className="size-5 rounded-full border grid place-content-center uppercase"
-                    key={name}
+                    key={name + i}
                   >
                     {name.substring(0, 2)}
                   </p>
@@ -70,9 +70,9 @@ const TaskCard = ({
           </div>
           <div className="size-full text-[0.6rem] leading-3 pt-1 gap-1">
             <p>Key Points:</p>
-            {keyPoints?.map((point) => {
+            {keyPoints?.map((point, i) => {
               return (
-                <div className="flex gap-1">
+                <div className="flex gap-1" key={"point" + i}>
                   <TbPointFilled className="pt-1" />
                   <p>{point}</p>
                 </div>
