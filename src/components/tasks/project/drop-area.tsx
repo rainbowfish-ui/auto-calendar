@@ -15,9 +15,9 @@ const DropArea = ({
   const [showDrop, setShowDrop] = useState(false);
   return (
     <section
-      className={`w-full transition-all flex items-center justify-center text-gray-600 ${
+      className={`w-full flex items-center justify-center text-gray-600 ${
         showDrop
-          ? "h-36 border border-gray-600 border-dashed p-2 rounded-md"
+          ? "h-36 border border-gray-600 border-dashed p-2 rounded-md  transition-all"
           : "h-5 opacity-0"
       }`}
       onDragEnter={() => setShowDrop(true)}
