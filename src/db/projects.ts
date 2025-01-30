@@ -1,5 +1,6 @@
 export const projects = [
   {
+    id: "123",
     name: "Website Revamp",
     isActive: true,
     teams: [
