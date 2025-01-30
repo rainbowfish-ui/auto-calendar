@@ -17,6 +17,7 @@ const TaskCard = ({
   lastUpdate,
   lastUpdateBy,
   lastUpdateOn,
+  progress,
 }: {
   members: any;
   name: string;
@@ -30,11 +31,21 @@ const TaskCard = ({
   lastUpdateBy: string;
   priority: string;
   lastUpdateOn: string;
+  progress: string;
   keyPoints: string[];
 }) => {
   return (
     <article
       className="w-full min-h-36 h-fit shadow-md border rounded-md bg-white active:opacity-50 active:border-black active:cursor-grabbing flex flex-col justify-between"
+      style={{
+        borderColor: `${
+          Number(progress) <= 10
+            ? "red"
+            : Number(progress) <= 50
+            ? "orange"
+            : "green"
+        }`,
+      }}
       draggable
       onDrag={() => setActiveCard({ fromTeam: teamIndex, index })}
       onDragEnd={() => setActiveCard(null)}
@@ -66,7 +77,19 @@ const TaskCard = ({
             <p>Due: {due}</p>
           </div>
           <div className="w-full h-1 border rounded-full relative">
-            <div className="w-[40%] h-full bg-gray-600 rounded-full"></div>
+            <div
+              className="h-full bg-gray-600 rounded-full"
+              style={{
+                width: `${progress}%`,
+                backgroundColor: `${
+                  Number(progress) <= 10
+                    ? "red"
+                    : Number(progress) <= 50
+                    ? "orange"
+                    : "green"
+                }`,
+              }}
+            ></div>
           </div>
           <div className="size-full text-[0.6rem] leading-3 pt-1 gap-1">
             <p>Key Points:</p>
