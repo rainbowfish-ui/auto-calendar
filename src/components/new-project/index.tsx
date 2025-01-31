@@ -2,13 +2,12 @@
 import Modal from "@/components/modal"; // Adjust path if necessary
 import Logo from "./logo";
 import Name from "./name";
-import AddTeam from "./add-team";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNewProject } from "@/actions/create-new-project";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
-import { generateRandomId } from "@/utils/generate-random-id";
 import { toast } from "sonner";
+import Description from "./description";
 
 export default function NewProject({
   isNewProjectModalOpen,
@@ -17,7 +16,7 @@ export default function NewProject({
   isNewProjectModalOpen: boolean;
   setIsNewProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { logo, name, teams } = useSelector(
+  const { logo, name, description } = useSelector(
     (state: RootState) => state.newProjectForm
   );
 
@@ -32,6 +31,7 @@ export default function NewProject({
     },
     onError: (error) => {
       console.error("Failed to create project:", error);
+      toast.error("Failed to create project. Please try again.");
     },
   });
 
@@ -40,21 +40,22 @@ export default function NewProject({
       isOpen={isNewProjectModalOpen}
       onClose={() => setIsNewProjectModalOpen(false)}
     >
-      <div className="w-[60vw] h-[70vh] flex flex-col p-4 text-xs gap-6 overflow-y-scroll no-scrollbar">
+      <div className="w-96 h-fit flex flex-col p-4 text-xs gap-6 overflow-y-scroll no-scrollbar">
         <p className="text-lg font-semibold">Create new project</p>
-        <div className="flex gap-10 items-center">
+        <div className="flex flex-col gap-4">
           <Logo />
           <Name />
-        </div>
-        <div>
-          <AddTeam />
+          <Description />
         </div>
         <button
           className="py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
           onClick={(e) => {
             e.preventDefault();
-            const id = generateRandomId({ length: 6 });
-            handleCreate({ logo, name, teams, id });
+            handleCreate({
+              name,
+              description,
+              teams: [],
+            });
           }}
         >
           Create
