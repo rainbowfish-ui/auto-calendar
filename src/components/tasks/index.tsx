@@ -5,12 +5,14 @@ import Header from "./header";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
 import { useQuery } from "@tanstack/react-query";
-import { getProjectById } from "@/app/actions/get-project-by-id";
+import { getProjectById } from "@/actions/get-project-by-id";
 import { PiSpinnerLight } from "react-icons/pi";
 import { setProject } from "@/state-manager/features/project";
+import NewTask from "../new-task";
 
 const Tasks = () => {
   const [activeCard, setActiveCard] = useState(null);
+  const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
   const { activeProject, project: localProject } = useSelector(
     (state: RootState) => state.project
   );
@@ -57,9 +59,19 @@ const Tasks = () => {
     dispatch(setProject({ ...localProject, teams: updatedTeams }));
   }
 
+  const handleClick = (e: React.MouseEvent) => {
+    const team = (e.target as HTMLDivElement).getAttribute("data-team-index");
+    if (!team) return;
+    setIsNewTaskModalOpen(true);
+  };
+
   return (
-    <div className="h-screen w-fit pl-4">
+    <div className="h-screen w-fit pl-4" onClick={handleClick}>
       <Header />
+      <NewTask
+        isNewTaskModalOpen={isNewTaskModalOpen}
+        setIsNewTaskModalOpen={setIsNewTaskModalOpen}
+      />
       <div className="h-screen w-[70vw] flex overflow-scroll gap-4 p-2 no-scrollbar pb-44">
         {isLoading && (
           <div className="size-full grid place-content-center">
