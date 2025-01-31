@@ -9,7 +9,7 @@ import { RootState } from "@/state-manager/store";
 import { generateRandomId } from "@/utils/generate-random-id";
 import { toast } from "sonner";
 
-export default function NewProject({
+export default function NewTask({
   isNewTaskModalOpen,
   setIsNewTaskModalOpen,
 }: {
