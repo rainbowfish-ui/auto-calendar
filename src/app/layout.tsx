@@ -5,6 +5,7 @@ import ReduxProvider from "@/providers/redux-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import ReactQueryProvider from "@/providers/query-client-provider";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/react";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <NuqsAdapter>
             <ReduxProvider>
+              <Analytics />
               <Toaster />
               {children}
             </ReduxProvider>
