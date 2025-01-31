@@ -1,5 +1,5 @@
 import { connectToDatabase } from "@/db/config";
-import { projects } from "@/db/projects";
+import { projects } from "@/db/dnu-projects";
 import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
