@@ -30,7 +30,7 @@ const ProjectList = () => {
     <div className="flex gap-4 items-center text-sm" onClick={handleClick}>
       {isLoading && <PiSpinnerLight className="animate-spin" />}
       {!isLoading &&
-        projectNames.map(({ name, id }: { name: string; id: string }) => {
+        projectNames?.map(({ name, id }: { name: string; id: string }) => {
           return (
             <button
               className={`py-1 text-nowrap transition-colors border-b hover:border-[#c4c4c4] flex items-center ${
