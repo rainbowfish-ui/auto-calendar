@@ -46,12 +46,13 @@ export default function NewProject({
           <Logo />
           <Name />
         </div>
-        <div className="flex gap-10 items-center">
+        <div>
           <AddTeam />
         </div>
         <button
-          className="px-4 py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
-          onClick={() => {
+          className="py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
+          onClick={(e) => {
+            e.preventDefault();
             const id = generateRandomId({ length: 6 });
             handleCreate({ logo, name, teams, id });
           }}

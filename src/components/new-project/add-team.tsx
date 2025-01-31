@@ -46,7 +46,7 @@ const AddTeam = () => {
   };
 
   return (
-    <div className="min-h-60">
+    <div>
       <p className="font-semibold">Add Teams</p>
       <div className="flex gap-10 flex-wrap">
         {teams.map(({ members, name, id }) => {
