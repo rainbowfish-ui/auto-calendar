@@ -1,47 +1,47 @@
-import React, { useState } from "react";
+"use client";
+import React from "react";
+import { setTeams } from "@/state-manager/features/new-project-form";
+import { RootState } from "@/state-manager/store";
 import { CgClose } from "react-icons/cg";
 import { HiPlus } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddTeam = () => {
-  const [teams, setTeams] = useState([
-    { name: "team1", members: ["sub", "har", "sh"], key: "1234" },
-    { name: "team2", members: ["sub", "har", "sh"], key: "2345" },
-  ]);
+  const { teams } = useSelector((state: RootState) => state.newProjectForm);
+  const dispatch = useDispatch();
 
   const addTeam = () => {
     const randomKey = Math.floor(1000 + Math.random() * 9000);
-    setTeams((prev) => [
-      ...prev,
+    const newTeams = [
+      ...teams,
       {
-        name: `team${prev.length}`,
+        name: `team${teams.length + 1}`,
         members: ["subhash"],
-        key: randomKey.toString(),
+        id: randomKey.toString(),
       },
-    ]);
+    ];
+    dispatch(setTeams(newTeams));
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     {
       type,
-      key,
+      id,
     }: {
       type: "TEAM_NAME" | "MEMBER";
-      key: string;
+      id: string;
     }
   ) => {
-    console.log(key, type);
     switch (type) {
       case "TEAM_NAME":
-        setTeams((prevTeams) => {
-          const temp = prevTeams.map((team) => {
-            if (team.key === key) {
-              return { ...team, name: e.target.value };
-            }
-            return team;
-          });
-          return temp;
+        const temp = teams.map((team) => {
+          if (team.id === id) {
+            return { ...team, name: e.target.value };
+          }
+          return team;
         });
+        dispatch(setTeams(temp));
     }
   };
 
@@ -49,14 +49,14 @@ const AddTeam = () => {
     <div className="min-h-60">
       <p className="font-semibold">Add Teams</p>
       <div className="flex gap-10 flex-wrap">
-        {teams.map(({ members, name, key }) => {
+        {teams.map(({ members, name, id }) => {
           return (
-            <div className="flex flex-col gap-1" key={key}>
+            <div className="flex flex-col gap-1" key={id}>
               <input
                 value={name}
                 placeholder="Team name"
                 className="outline-none border rounded-md px-2 py-1 w-60"
-                onChange={(e) => handleChange(e, { type: "TEAM_NAME", key })}
+                onChange={(e) => handleChange(e, { type: "TEAM_NAME", id })}
               />
               <input
                 placeholder="Search Member"
