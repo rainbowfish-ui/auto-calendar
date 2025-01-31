@@ -1,27 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type Team = {
-  name: string;
-  members: string[];
-  id: string;
-};
-
-export type ProjectsForm = {
+export type TeamForm = {
   id: string;
   name: string;
   description: string;
   logo: string;
 };
 
-const initialState: ProjectsForm = {
+const initialState: TeamForm = {
   id: "",
   logo: "",
   name: "",
   description: "",
 };
 
-const projectForm = createSlice({
-  name: "project-form",
+const teamForm = createSlice({
+  name: "team-form",
   initialState: initialState,
   reducers: (create) => ({
     setId: create.reducer<string>((state, action) => {
@@ -39,5 +33,5 @@ const projectForm = createSlice({
   }),
 });
 
-export const { setLogo, setName, setId, setDescription } = projectForm.actions;
-export default projectForm.reducer;
+export const { setLogo, setName, setId, setDescription } = teamForm.actions;
+export default teamForm.reducer;
