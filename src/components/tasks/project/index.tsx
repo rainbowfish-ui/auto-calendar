@@ -61,6 +61,9 @@ const Project = ({
             </React.Fragment>
           );
         })}
+        <button className="w-full bg-white rounded-md text-xs border py-1 active:scale-95 transition-transform">
+          + Add task
+        </button>
       </div>
     </div>
   );
