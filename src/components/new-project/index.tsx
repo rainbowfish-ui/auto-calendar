@@ -3,6 +3,12 @@ import Modal from "@/components/modal"; // Adjust path if necessary
 import Logo from "./logo";
 import Name from "./name";
 import AddTeam from "./add-team";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createNewProject } from "@/app/actions/create-new-project";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state-manager/store";
+import { generateRandomId } from "@/utils/generate-random-id";
+import { toast } from "sonner";
 
 export default function NewProject({
   isNewProjectModalOpen,
@@ -11,6 +17,22 @@ export default function NewProject({
   isNewProjectModalOpen: boolean;
   setIsNewProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const { logo, name, teams } = useSelector(
+    (state: RootState) => state.newProjectForm
+  );
+
+  const queryClient = useQueryClient();
+
+  const { mutate: handleCreate } = useMutation({
+    mutationFn: createNewProject,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["project-names"] });
+    },
+    onError: (error) => {
+      console.error("Failed to create project:", error);
+    },
+  });
+
   return (
     <Modal
       isOpen={isNewProjectModalOpen}
@@ -25,7 +47,15 @@ export default function NewProject({
         <div className="flex gap-10 items-center">
           <AddTeam />
         </div>
-        <button className="px-4 py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold">
+        <button
+          className="px-4 py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
+          onClick={() => {
+            const id = generateRandomId({ length: 6 });
+            handleCreate({ logo, name, teams, id });
+            toast.success("New project created");
+            setIsNewProjectModalOpen(false);
+          }}
+        >
           Create
         </button>
       </div>
