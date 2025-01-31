@@ -65,7 +65,10 @@ const AddTeam = () => {
               <div className="flex gap-1 flex-wrap">
                 {members.map((mem) => {
                   return (
-                    <div className="outline-none border rounded-md px-2 py-1 w-fit flex items-center justify-center gap-1">
+                    <div
+                      className="outline-none border rounded-md px-2 py-1 w-fit flex items-center justify-center gap-1"
+                      key={mem}
+                    >
                       {mem} <CgClose />
                     </div>
                   );
