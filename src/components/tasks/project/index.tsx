@@ -61,7 +61,10 @@ const Project = ({
             </React.Fragment>
           );
         })}
-        <button className="w-full bg-white rounded-md text-xs border py-1 active:scale-95 transition-transform">
+        <button
+          className="w-full bg-white rounded-md text-xs border py-1 active:scale-95 transition-transform"
+          data-team-index={teamIndex}
+        >
           + Add task
         </button>
       </div>
