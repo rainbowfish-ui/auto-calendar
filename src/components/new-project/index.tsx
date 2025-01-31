@@ -4,7 +4,7 @@ import Logo from "./logo";
 import Name from "./name";
 import AddTeam from "./add-team";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNewProject } from "@/app/actions/create-new-project";
+import { createNewProject } from "@/actions/create-new-project";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
 import { generateRandomId } from "@/utils/generate-random-id";
