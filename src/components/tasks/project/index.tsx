@@ -32,7 +32,7 @@ const Project = ({
           onDrop={onDrop}
           activeCard={activeCard}
         />
-        {tasks.map((task: any, i: number) => {
+        {tasks?.map((task: any, i: number) => {
           return (
             <React.Fragment key={task.name}>
               <TaskCard
