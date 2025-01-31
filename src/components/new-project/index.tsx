@@ -27,6 +27,8 @@ export default function NewProject({
     mutationFn: createNewProject,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["project-names"] });
+      toast.success("New project created");
+      setIsNewProjectModalOpen(false);
     },
     onError: (error) => {
       console.error("Failed to create project:", error);
@@ -52,8 +54,6 @@ export default function NewProject({
           onClick={() => {
             const id = generateRandomId({ length: 6 });
             handleCreate({ logo, name, teams, id });
-            toast.success("New project created");
-            setIsNewProjectModalOpen(false);
           }}
         >
           Create
