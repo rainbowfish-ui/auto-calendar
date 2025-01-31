@@ -2,8 +2,14 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import calendar from "./features/calendar";
 import project from "./features/project";
 import newProjectForm from "./features/new-project-form";
+import newTaskForm from "./features/new-task-form";
 
-const reducer = combineReducers({ calendar, project, newProjectForm });
+const reducer = combineReducers({
+  calendar,
+  project,
+  newProjectForm,
+  newTaskForm,
+});
 
 export const store = configureStore({
   reducer,
