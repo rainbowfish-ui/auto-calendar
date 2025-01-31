@@ -3,12 +3,14 @@ import calendar from "./features/calendar";
 import project from "./features/project";
 import newProjectForm from "./features/new-project-form";
 import newTaskForm from "./features/new-task-form";
+import newTeamForm from "./features/new-team-form";
 
 const reducer = combineReducers({
   calendar,
   project,
   newProjectForm,
   newTaskForm,
+  newTeamForm,
 });
 
 export const store = configureStore({
