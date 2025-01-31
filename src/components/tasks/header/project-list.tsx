@@ -1,5 +1,5 @@
 "use client";
-import { getAllProjectsNames } from "@/app/actions/get-all-projects-names";
+import { getAllProjectsNames } from "@/actions/get-all-projects-names";
 import { setActiveProject } from "@/state-manager/features/project";
 import { RootState } from "@/state-manager/store";
 import { useQuery } from "@tanstack/react-query";
