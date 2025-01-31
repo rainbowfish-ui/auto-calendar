@@ -5,7 +5,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNewProject } from "@/actions/create-new-project";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
-import { generateRandomId } from "@/utils/generate-random-id";
 import { toast } from "sonner";
 
 export default function NewTask({
@@ -15,9 +14,7 @@ export default function NewTask({
   isNewTaskModalOpen: boolean;
   setIsNewTaskModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { logo, name, teams } = useSelector(
-    (state: RootState) => state.newProjectForm
-  );
+  const { name } = useSelector((state: RootState) => state.newTaskForm);
 
   const queryClient = useQueryClient();
 
@@ -49,8 +46,7 @@ export default function NewTask({
         <button
           className="px-4 py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
           onClick={() => {
-            const id = generateRandomId({ length: 6 });
-            handleCreate({ name, teams, id });
+            handleCreate({ name });
           }}
         >
           Create
