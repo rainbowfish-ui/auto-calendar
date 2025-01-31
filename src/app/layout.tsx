@@ -4,6 +4,7 @@ import "./globals.css";
 import ReduxProvider from "@/providers/redux-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import ReactQueryProvider from "@/providers/query-client-provider";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -25,7 +26,10 @@ export default function RootLayout({
       <body className={`${poppins.className}`}>
         <ReactQueryProvider>
           <NuqsAdapter>
-            <ReduxProvider>{children}</ReduxProvider>
+            <ReduxProvider>
+              <Toaster />
+              {children}
+            </ReduxProvider>
           </NuqsAdapter>
         </ReactQueryProvider>
       </body>
