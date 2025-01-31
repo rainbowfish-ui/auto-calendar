@@ -16,7 +16,7 @@ const Name = () => {
       <p className="font-semibold">Name</p>
       <input
         placeholder="name"
-        className="outline-none border rounded-md px-2 py-1 w-60"
+        className="outline-none border rounded-md p-2 w-full"
         onChange={handleChange}
         value={name}
       />
