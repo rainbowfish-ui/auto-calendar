@@ -35,7 +35,7 @@ export default function NewTask({
       isOpen={isNewTaskModalOpen}
       onClose={() => setIsNewTaskModalOpen(false)}
     >
-      <div className="w-[60vw] h-[70vh] flex flex-col p-4 text-xs gap-6 overflow-y-scroll no-scrollbar justify-between">
+      <div className="w-96 h-[70vh] flex flex-col p-4 text-xs gap-6 overflow-y-scroll no-scrollbar justify-between">
         <div>
           <p className="text-lg font-semibold">Add new task</p>
           <div className="flex gap-10 items-center mt-4">

@@ -1,4 +1,5 @@
 import { connectToDatabase } from "@/db/config";
+import { projects } from "@/db/dnu-projects";
 import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -13,17 +14,10 @@ export const GET = async (req: NextRequest) => {
   const db = await connectToDatabase();
   const projectsCollection = db.collection("projects");
 
-  const project = await projectsCollection.aggregate([
-    { $match: { _id: new ObjectId(projectId) } },
-    {
-      $lookup: {
-        from: "teams",
-        localField: "teams",
-        foreignField: "_id",
-        as: "teams",
-      },
-    },
-  ]);
+  const project = await projectsCollection.findOne({
+    _id: new ObjectId(projectId),
+  });
+
   if (!project) {
     return NextResponse.json({ error: "Project not found" }, { status: 404 });
   }
@@ -33,6 +27,7 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
   try {
     const reqJson = await req.json();
+    const projectId = reqJson.projectId;
 
     if (!reqJson.name || !reqJson.description) {
       return NextResponse.json(
@@ -42,12 +37,13 @@ export const POST = async (req: NextRequest) => {
     }
 
     const db = await connectToDatabase();
+    const teamsCollection = db.collection("teams");
     const projectsCollection = db.collection("projects");
 
     const result = await projectsCollection.insertOne(reqJson);
 
     return NextResponse.json({
-      msg: "New project created!",
+      msg: "New team created!",
       projectId: result.insertedId,
     });
   } catch (error) {

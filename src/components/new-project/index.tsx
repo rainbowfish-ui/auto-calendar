@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
 import { toast } from "sonner";
 import Description from "./description";
+import { PiSpinnerThin } from "react-icons/pi";
 
 export default function NewProject({
   isNewProjectModalOpen,
@@ -22,7 +23,7 @@ export default function NewProject({
 
   const queryClient = useQueryClient();
 
-  const { mutate: handleCreate } = useMutation({
+  const { mutate: handleCreate, isPending } = useMutation({
     mutationFn: createNewProject,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["project-names"] });
@@ -57,8 +58,9 @@ export default function NewProject({
               teams: [],
             });
           }}
+          disabled={isPending}
         >
-          Create
+          {isPending ? <PiSpinnerThin  className="animate-spin"/> : "Create"}
         </button>
       </div>
     </Modal>
