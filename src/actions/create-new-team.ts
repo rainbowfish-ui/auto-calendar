@@ -17,7 +17,7 @@ export const createNewTeam = async (body: any) => {
 
     return response.json();
   } catch (error) {
-    console.error("Failed to create project:", error);
+    console.error("Failed to create team:", error);
     throw error;
   }
 };
