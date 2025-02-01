@@ -2,11 +2,6 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/db/config";
 import Project from "@/models/project";
 
-type ProjectResponse = {
-  id: string;
-  name: string;
-};
-
 export const GET = async (): Promise<NextResponse> => {
   try {
     await connectToDatabase();
