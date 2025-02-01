@@ -1,13 +1,11 @@
 "use client";
-import { setDescription } from "@/state-manager/features/new-project-form";
+import { setDescription } from "@/state-manager/features/new-team-form";
 import { RootState } from "@/state-manager/store";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Description = () => {
-  const { description } = useSelector(
-    (state: RootState) => state.newProjectForm
-  );
+  const { description } = useSelector((state: RootState) => state.newTeamForm);
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

@@ -27,10 +27,12 @@ const Header = () => {
       <NewProject
         isNewProjectModalOpen={isNewProjectModalOpen}
         setIsNewProjectModalOpen={setIsNewProjectModalOpen}
+        key="new-project"
       />
       <NewTeam
         isNewTeamModalOpen={isNewTeamModalOpen}
         setIsNewTeamModalOpen={setIsNewTeamModalOpen}
+        key="new-team"
       />
     </div>
   );

@@ -3,7 +3,7 @@ import { BASE_URL } from "./constants";
 
 export const createNewTeam = async (body: any) => {
   try {
-    const response = await fetch(`${BASE_URL}/api/project`, {
+    const response = await fetch(`${BASE_URL}/api/team`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
