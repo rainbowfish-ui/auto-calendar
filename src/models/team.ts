@@ -1,9 +1,9 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
-import { ITask, TaskSchema } from "./task";
+import { ITask } from "./task";
 
 export interface ITeam extends Document {
   name: string;
-  members: Types.ObjectId[]; // References User IDs
+  members: Types.ObjectId[];
   tasks: ITask[];
   createdAt: Date;
   updatedAt: Date;
