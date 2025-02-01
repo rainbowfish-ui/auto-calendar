@@ -1,31 +1,23 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/db/config";
-import { ObjectId } from "mongodb";
+import Project from "@/models/project";
 
-type Project = {
+type ProjectResponse = {
   id: string;
   name: string;
 };
 
 export const GET = async (): Promise<NextResponse> => {
   try {
-    const db = await connectToDatabase();
-    const projectsCollection = db.collection("projects");
+    await connectToDatabase();
 
-    const projects = await projectsCollection
-      .find({}, { projection: { _id: 1, name: 1 } })
-      .toArray();
+    const projects = await Project.find().select("name");
 
-    const res: Project[] = projects.map((proj) => ({
-      id: (proj._id as ObjectId).toString(),
-      name: proj.name,
-    }));
-
-    return NextResponse.json(res);
+    return NextResponse.json(projects);
   } catch (error) {
     console.error("Error fetching projects:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }
