@@ -1,4 +1,4 @@
-import mongoose, { Schema,  Types } from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 
 export interface ITask {
   name: string;
@@ -26,7 +26,7 @@ export const TaskSchema = new Schema<ITask>({
   due: { type: String, required: true },
   keyPoints: [{ type: String }],
   lastUpdate: { type: String },
-  lastUpdateBy: { type: Schema.Types.ObjectId, ref: "User" }, // Reference to User
+  lastUpdateBy: { type: Schema.Types.ObjectId, ref: "User" },
   lastUpdateOn: { type: String },
 });
 
