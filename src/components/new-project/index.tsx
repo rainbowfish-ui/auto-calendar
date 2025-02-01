@@ -49,9 +49,8 @@ export default function NewProject({
           <Description />
         </div>
         <button
-          className="py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
-          onClick={(e) => {
-            e.preventDefault();
+          className="py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold flex items-center justify-center"
+          onClick={() => {
             handleCreate({
               name,
               description,
@@ -60,7 +59,7 @@ export default function NewProject({
           }}
           disabled={isPending}
         >
-          {isPending ? <PiSpinnerThin  className="animate-spin"/> : "Create"}
+          {isPending ? <PiSpinnerThin className="animate-spin" /> : "Create"}
         </button>
       </div>
     </Modal>
