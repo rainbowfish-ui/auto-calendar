@@ -27,7 +27,7 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { name, description, projectId } = await req.json();
+    const { name, context, projectId } = await req.json();
     if (!projectId) {
       return NextResponse.json(
         { error: "please select a project" },
@@ -42,7 +42,7 @@ export const POST = async (req: NextRequest) => {
 
     const team = await new Team({
       name,
-      description,
+      context,
       members: [],
       tasks: [],
     }).save();

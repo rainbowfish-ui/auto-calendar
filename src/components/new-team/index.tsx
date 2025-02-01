@@ -1,7 +1,7 @@
 "use client";
 import Modal from "@/components/modal"; // Adjust path if necessary
 import Name from "./name";
-import Description from "./description";
+import Context from "./context";
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNewTeam } from "@/actions/create-new-team";
@@ -15,7 +15,7 @@ export default function NewTeam({
   isNewTeamModalOpen: boolean;
   setIsNewTeamModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { name, description } = useSelector(
+  const { name, context } = useSelector(
     (state: RootState) => state.newTeamForm
   );
   const { activeProject } = useSelector((state: RootState) => state.project);
@@ -45,7 +45,7 @@ export default function NewTeam({
         <p className="text-lg font-semibold">Create new team</p>
         <div className="flex flex-col gap-4">
           <Name />
-          <Description />
+          <Context />
         </div>
         <button
           className="py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
@@ -53,7 +53,7 @@ export default function NewTeam({
             handleCreate({
               projectId: activeProject,
               name,
-              description,
+              context,
             });
           }}
         >

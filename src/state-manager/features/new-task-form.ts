@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export type TaskForm = {
   id: string;
   name: string;
-  description: string;
+  context: string;
   priority: "HIGH" | "MEDIUM" | "LOW";
   keyPoints: string[];
   members: string[];
@@ -14,7 +14,7 @@ const initialState: TaskForm = {
   keyPoints: [],
   members: [],
   name: "",
-  description: "",
+  context: "",
   priority: "LOW",
 };
 
@@ -25,11 +25,11 @@ const taskForm = createSlice({
     setName: create.reducer<string>((state, action) => {
       state.name = action.payload;
     }),
-    setDescription: create.reducer<string>((state, action) => {
-      state.description = action.payload;
+    setContext: create.reducer<string>((state, action) => {
+      state.context = action.payload;
     }),
   }),
 });
 
-export const { setName, setDescription } = taskForm.actions;
+export const { setName, setContext } = taskForm.actions;
 export default taskForm.reducer;
