@@ -35,7 +35,7 @@ export const POST = async (req: NextRequest) => {
     await connectToDatabase();
     const reqJson = await req.json();
 
-    if (!reqJson.name || !reqJson.description) {
+    if (!reqJson.name) {
       return NextResponse.json(
         { error: "Name and description are required" },
         { status: 400 }
