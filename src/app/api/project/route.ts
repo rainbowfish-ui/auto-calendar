@@ -1,37 +1,38 @@
 import { connectToDatabase } from "@/db/config";
-import { ObjectId } from "mongodb";
+import Project from "@/models/project";
 import { NextRequest, NextResponse } from "next/server";
+import mongoose from "mongoose";
+import Team from "@/models/team";
 
 export const GET = async (req: NextRequest) => {
-  const projectId = req.nextUrl.searchParams.get("projectId");
-  if (!projectId) {
+  try {
+    await connectToDatabase();
+    Team; // load schema
+
+    const projectId = req.nextUrl.searchParams.get("projectId");
+    if (!projectId || !mongoose.Types.ObjectId.isValid(projectId)) {
+      return NextResponse.json({ error: "Invalid projectId" }, { status: 400 });
+    }
+
+    const project = await Project.findById(projectId).populate("teams");
+
+    if (!project) {
+      return NextResponse.json({ error: "Project not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(project);
+  } catch (error) {
+    console.error("Error fetching project:", error);
     return NextResponse.json(
-      { error: "projectId is required" },
-      { status: 400 }
+      { error: "Internal Server Error" },
+      { status: 500 }
     );
   }
-  const db = await connectToDatabase();
-  const projectsCollection = db.collection("projects");
-
-  const project = await projectsCollection.aggregate([
-    { $match: { _id: new ObjectId(projectId) } },
-    {
-      $lookup: {
-        from: "teams",
-        localField: "teams",
-        foreignField: "_id",
-        as: "teams",
-      },
-    },
-  ]);
-  if (!project) {
-    return NextResponse.json({ error: "Project not found" }, { status: 404 });
-  }
-  return NextResponse.json(project);
 };
 
 export const POST = async (req: NextRequest) => {
   try {
+    await connectToDatabase();
     const reqJson = await req.json();
 
     if (!reqJson.name || !reqJson.description) {
@@ -41,19 +42,17 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const db = await connectToDatabase();
-    const projectsCollection = db.collection("projects");
-
-    const result = await projectsCollection.insertOne(reqJson);
+    const newProject = new Project(reqJson);
+    const savedProject = await newProject.save();
 
     return NextResponse.json({
       msg: "New project created!",
-      projectId: result.insertedId,
+      projectId: savedProject._id,
     });
   } catch (error) {
     console.error("Error creating project:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }
