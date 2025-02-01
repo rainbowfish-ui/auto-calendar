@@ -1,11 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type Team = {
-  name: string;
-  members: string[];
-  id: string;
-};
-
 export type ProjectsForm = {
   id: string;
   name: string;
