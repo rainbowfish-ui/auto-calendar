@@ -1,37 +1,28 @@
-import { MongoClient, Db, ServerApiVersion } from "mongodb";
+import mongoose from "mongoose";
 
-let cachedClient: MongoClient | null = null;
-let cachedDb: Db | null = null;
+let isConnected = false;
 
 export async function connectToDatabase() {
-  if (cachedDb) {
-    console.log("Using cached database instance");
-    return cachedDb;
+  if (isConnected) {
+    console.log("✅ Using existing database connection");
+    return mongoose.connection;
   }
 
   const uri = process.env.MONGODB_URI;
-  const dbName = process.env.DATABASE;
 
   if (!uri) {
     throw new Error(
-      "Please define the MONGODB_URI environment variable in .env.local"
+      "🚨 MONGODB_URI or DATABASE is missing from environment variables!"
     );
   }
 
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
+  try {
+    const db = await mongoose.connect(uri);
 
-  await client.connect();
-  console.log("Connected to MongoDB!");
-  const db = client.db(dbName);
-
-  cachedClient = client;
-  cachedDb = db;
-
-  return db;
+    isConnected = true;
+    return db.connection;
+  } catch (error) {
+    console.error("❌ MongoDB connection error:", error);
+    throw new Error("Failed to connect to MongoDB");
+  }
 }
