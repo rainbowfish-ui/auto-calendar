@@ -7,6 +7,7 @@ export type TaskForm = {
   priority: "HIGH" | "MEDIUM" | "LOW";
   keyPoints: string[];
   members: string[];
+  activeTeamId?: string;
 };
 
 const initialState: TaskForm = {
@@ -28,8 +29,15 @@ const taskForm = createSlice({
     setContext: create.reducer<string>((state, action) => {
       state.context = action.payload;
     }),
+    setActiveTeamModal: create.reducer<string>((state, action) => {
+      state.activeTeamId = action.payload;
+    }),
+    setPriority: create.reducer<TaskForm["priority"]>((state, action) => {
+      state.priority = action.payload;
+    }),
   }),
 });
 
-export const { setName, setContext } = taskForm.actions;
+export const { setName, setContext, setActiveTeamModal, setPriority } =
+  taskForm.actions;
 export default taskForm.reducer;
