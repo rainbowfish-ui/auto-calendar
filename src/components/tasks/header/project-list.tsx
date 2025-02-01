@@ -24,20 +24,20 @@ const ProjectList = () => {
   };
 
   useEffect(() => {
-    if (projectNames) dispatch(setActiveProject(projectNames[0].id));
+    if (projectNames) dispatch(setActiveProject(projectNames[0]?._id));
   }, [isLoading]);
   return (
     <div className="flex gap-4 items-center text-sm" onClick={handleClick}>
       {isLoading && <PiSpinnerLight className="animate-spin" />}
       {!isLoading &&
-        projectNames?.map(({ name, id }: { name: string; id: string }) => {
+        projectNames?.map(({ name, _id }: { name: string; _id: string }) => {
           return (
             <button
               className={`py-1 text-nowrap transition-colors border-b hover:border-[#c4c4c4] flex items-center ${
-                activeProject === id ? "border-[#c4c4c4]" : "border-white"
+                activeProject === _id ? "border-[#c4c4c4]" : "border-white"
               }`}
               key={"head" + name}
-              data-project-id={id}
+              data-project-id={_id}
             >
               {name}
             </button>
