@@ -6,6 +6,7 @@ import { createNewProject } from "@/actions/create-new-project";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
 import { toast } from "sonner";
+import Context from "./context";
 
 export default function NewTask({
   isNewTaskModalOpen,
@@ -40,6 +41,7 @@ export default function NewTask({
           <p className="text-lg font-semibold">Add new task</p>
           <div className="flex gap-10 items-center mt-4">
             <Name />
+            <Context />
           </div>
         </div>
         <div className="flex gap-10 items-center"></div>

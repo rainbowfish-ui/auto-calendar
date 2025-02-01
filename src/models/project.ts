@@ -1,9 +1,8 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { ITeam } from "./team";
 
 export interface IProject extends Document {
   name: string;
-  description: string;
+  context: string;
   logo: string;
   teams: mongoose.Types.ObjectId[];
   createdAt: Date;
@@ -13,7 +12,7 @@ export interface IProject extends Document {
 const ProjectSchema = new Schema<IProject>(
   {
     name: { type: String, required: true },
-    description: { type: String, required: true },
+    context: { type: String, required: true },
     logo: { type: String, required: false },
     teams: [{ type: mongoose.Schema.Types.ObjectId, ref: "Team" }],
   },

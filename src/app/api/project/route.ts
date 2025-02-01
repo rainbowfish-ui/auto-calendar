@@ -36,10 +36,7 @@ export const POST = async (req: NextRequest) => {
     const reqJson = await req.json();
 
     if (!reqJson.name) {
-      return NextResponse.json(
-        { error: "Name and description are required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Name is required" }, { status: 400 });
     }
 
     const newProject = new Project(reqJson);

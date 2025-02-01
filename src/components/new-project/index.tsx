@@ -7,7 +7,7 @@ import { createNewProject } from "@/actions/create-new-project";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
 import { toast } from "sonner";
-import Description from "./description";
+import Context from "./context";
 import { PiSpinnerThin } from "react-icons/pi";
 
 export default function NewProject({
@@ -17,7 +17,7 @@ export default function NewProject({
   isNewProjectModalOpen: boolean;
   setIsNewProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { logo, name, description } = useSelector(
+  const { logo, name, context } = useSelector(
     (state: RootState) => state.newProjectForm
   );
 
@@ -46,14 +46,14 @@ export default function NewProject({
         <div className="flex flex-col gap-4">
           <Logo />
           <Name />
-          <Description />
+          <Context />
         </div>
         <button
           className="py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold flex items-center justify-center"
           onClick={() => {
             handleCreate({
               name,
-              description,
+              context,
               teams: [],
             });
           }}

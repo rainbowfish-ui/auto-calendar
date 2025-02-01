@@ -1,27 +1,27 @@
 "use client";
-import { setDescription } from "@/state-manager/features/new-team-form";
+import { setContext } from "@/state-manager/features/new-task-form";
 import { RootState } from "@/state-manager/store";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const Description = () => {
-  const { description } = useSelector((state: RootState) => state.newTeamForm);
+const Context = () => {
+  const { context } = useSelector((state: RootState) => state.newTaskForm);
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setDescription(e.target.value));
+    dispatch(setContext(e.target.value));
   };
   return (
     <div className="flex flex-col gap-1">
-      <p className="font-semibold">Description</p>
+      <p className="font-semibold">Context</p>
       <textarea
-        placeholder="description"
+        placeholder="context"
         className="outline-none border rounded-md px-2 py-1 w-full h-24 resize-none"
         onChange={handleChange}
-        value={description}
+        value={context}
       />
     </div>
   );
 };
 
-export default Description;
+export default Context;

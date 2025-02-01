@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export type TeamForm = {
   id: string;
   name: string;
-  description: string;
+  context: string;
   logo: string;
 };
 
@@ -11,7 +11,7 @@ const initialState: TeamForm = {
   id: "",
   logo: "",
   name: "",
-  description: "",
+  context: "",
 };
 
 const teamForm = createSlice({
@@ -27,11 +27,11 @@ const teamForm = createSlice({
     setName: create.reducer<string>((state, action) => {
       state.name = action.payload;
     }),
-    setDescription: create.reducer<string>((state, action) => {
-      state.description = action.payload;
+    setContext: create.reducer<string>((state, action) => {
+      state.context = action.payload;
     }),
   }),
 });
 
-export const { setLogo, setName, setId, setDescription } = teamForm.actions;
+export const { setLogo, setName, setId, setContext } = teamForm.actions;
 export default teamForm.reducer;
