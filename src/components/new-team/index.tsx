@@ -18,12 +18,15 @@ export default function NewTeam({
   const { name, description } = useSelector(
     (state: RootState) => state.newTeamForm
   );
+  const { activeProject } = useSelector((state: RootState) => state.project);
   const queryClient = useQueryClient();
 
   const { mutate: handleCreate } = useMutation({
     mutationFn: createNewTeam,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["project-names"] });
+      queryClient.invalidateQueries({
+        queryKey: ["active-project", activeProject],
+      });
       toast.success("New project created");
       setIsNewTeamModalOpen(false);
     },
@@ -47,8 +50,8 @@ export default function NewTeam({
         <button
           className="py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
           onClick={(e) => {
-            e.preventDefault();
             handleCreate({
+              projectId: activeProject,
               name,
               description,
             });
