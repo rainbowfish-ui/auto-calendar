@@ -78,24 +78,23 @@ const Tasks = () => {
             <PiSpinnerLight className="animate-spin" size={30} />
           </div>
         )}
-        {localProject &&
-          localProject.teams?.map(
-            ({ members, name, tasks }: any, index: number) => {
-              return (
-                <Project
-                  setActiveCard={setActiveCard}
-                  name={name}
-                  members={members}
-                  tasks={tasks}
-                  key={name + index}
-                  projectName={project?.name}
-                  onDrop={onDrop}
-                  activeCard={activeCard}
-                  teamIndex={index}
-                />
-              );
-            }
-          )}
+        {localProject?.teams?.map(
+          ({ members, name, tasks }: any, index: number) => {
+            return (
+              <Project
+                setActiveCard={setActiveCard}
+                name={name}
+                members={members}
+                tasks={tasks}
+                key={name + index}
+                projectName={project?.name}
+                onDrop={onDrop}
+                activeCard={activeCard}
+                teamIndex={index}
+              />
+            );
+          }
+        )}
       </div>
     </div>
   );
