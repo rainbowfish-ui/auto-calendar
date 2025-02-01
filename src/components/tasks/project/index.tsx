@@ -12,9 +12,11 @@ const Project = ({
   onDrop,
   activeCard,
   teamIndex,
+  teamId,
 }: {
   name: string;
   projectName: string;
+  teamId: string;
   members: any;
   tasks: any;
   setActiveCard: any;
@@ -63,7 +65,8 @@ const Project = ({
         })}
         <button
           className="w-full bg-white rounded-md text-xs border py-1 active:scale-95 transition-transform"
-          data-team-index={teamIndex}
+          data-team-id={teamId}
+          data-action="add-task"
         >
           + Add task
         </button>

@@ -9,9 +9,11 @@ import { getProjectById } from "@/actions/get-project-by-id";
 import { PiSpinnerLight } from "react-icons/pi";
 import { setProject } from "@/state-manager/features/project";
 import NewTask from "../new-task";
+import { setActiveTeamModal } from "@/state-manager/features/new-task-form";
 
 const Tasks = () => {
   const [activeCard, setActiveCard] = useState(null);
+
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
   const { activeProject, project: localProject } = useSelector(
     (state: RootState) => state.project
@@ -60,9 +62,13 @@ const Tasks = () => {
   }
 
   const handleClick = (e: React.MouseEvent) => {
-    const team = (e.target as HTMLDivElement).getAttribute("data-team-index");
-    if (!team) return;
-    setIsNewTaskModalOpen(true);
+    const action = (e.target as HTMLButtonElement).getAttribute("data-action");
+    const teamId = (e.target as HTMLButtonElement).getAttribute("data-team-id");
+    if (!teamId) return;
+    if (action === "add-task") {
+      dispatch(setActiveTeamModal(teamId));
+      setIsNewTaskModalOpen(true);
+    }
   };
 
   return (
@@ -79,7 +85,7 @@ const Tasks = () => {
           </div>
         )}
         {localProject?.teams?.map(
-          ({ members, name, tasks }: any, index: number) => {
+          ({ members, name, tasks, _id }: any, index: number) => {
             return (
               <Project
                 setActiveCard={setActiveCard}
@@ -91,6 +97,7 @@ const Tasks = () => {
                 onDrop={onDrop}
                 activeCard={activeCard}
                 teamIndex={index}
+                teamId={_id}
               />
             );
           }
