@@ -1,5 +1,6 @@
 import { connectToDatabase } from "@/db/config";
-import { projects } from "@/db/dnu-projects";
+import Project from "@/models/project";
+import Team from "@/models/team";
 import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -26,25 +27,37 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   try {
-    const reqJson = await req.json();
-    const projectId = reqJson.projectId;
-
-    if (!reqJson.name || !reqJson.description) {
+    const { name, description, projectId } = await req.json();
+    if (!projectId) {
       return NextResponse.json(
-        { error: "Name and description are required" },
+        { error: "please select a project" },
         { status: 400 }
       );
     }
+    if (!name) {
+      return NextResponse.json({ error: "Name is required" }, { status: 400 });
+    }
 
-    const db = await connectToDatabase();
-    const teamsCollection = db.collection("teams");
-    const projectsCollection = db.collection("projects");
+    await connectToDatabase();
 
-    const result = await projectsCollection.insertOne(reqJson);
+    const team = await new Team({
+      name,
+      description,
+      members: [],
+      tasks: [],
+    }).save();
+
+    await Project.updateOne(
+      { _id: projectId },
+      {
+        $push: {
+          teams: team._id,
+        },
+      }
+    );
 
     return NextResponse.json({
       msg: "New team created!",
-      projectId: result.insertedId,
     });
   } catch (error) {
     console.error("Error creating project:", error);
