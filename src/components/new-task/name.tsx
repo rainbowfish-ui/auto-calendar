@@ -12,11 +12,11 @@ const Name = () => {
     dispatch(setName(e.target.value));
   };
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 w-full">
       <p className="font-semibold">Name</p>
       <input
         placeholder="name"
-        className="outline-none border rounded-md px-2 py-1 w-60"
+        className="outline-none border rounded-md p-2 w-full"
         onChange={handleChange}
         value={name}
       />

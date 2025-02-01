@@ -16,7 +16,7 @@ const Context = () => {
       <p className="font-semibold">Context</p>
       <textarea
         placeholder="context"
-        className="outline-none border rounded-md px-2 py-1 w-full h-24 resize-none"
+        className="outline-none border rounded-md p-2 w-full h-24 resize-none"
         onChange={handleChange}
         value={context}
       />
