@@ -9,6 +9,10 @@ import { toast } from "sonner";
 import Context from "./context";
 import Priority from "./priority";
 import { setPriority, TaskForm } from "@/state-manager/features/new-task-form";
+import DueDate from "./due";
+import KeyPoints from "./key-points";
+import Status from "./status";
+import AssignTo from "./assign-to";
 
 export default function NewTask({
   isNewTaskModalOpen,
@@ -48,13 +52,17 @@ export default function NewTask({
       isOpen={isNewTaskModalOpen}
       onClose={() => setIsNewTaskModalOpen(false)}
     >
-      <div className="w-96 h-[70vh] flex flex-col p-4 text-xs gap-6 overflow-y-scroll no-scrollbar justify-between">
+      <div className="w-96 h-[90vh] flex flex-col p-4 text-xs gap-6 overflow-y-scroll no-scrollbar justify-between">
         <div>
           <p className="text-lg font-semibold">Add new task</p>
           <div className="flex flex-col gap-2 items-start size-full mt-4">
             <Name />
             <Context />
+            <KeyPoints />
+            <Status />
             <Priority />
+            <DueDate />
+            <AssignTo />
           </div>
         </div>
         <button
