@@ -108,9 +108,11 @@ const TaskCard = ({
         </div>
       </div>
       <div className="h-fit w-full border-t shrink-0 px-1 pt-1 text-[0.6rem] text-gray-500">
-        <p className="leading-3">
-          Last update: {lastUpdate} -{lastUpdateBy}
-        </p>
+        {lastUpdate && (
+          <p className="leading-3">
+            Last update: {lastUpdate} -{lastUpdateBy}
+          </p>
+        )}
         <p className="w-full text-end"> {lastUpdateOn}</p>
       </div>
     </article>
