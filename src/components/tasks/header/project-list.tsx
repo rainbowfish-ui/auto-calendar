@@ -2,7 +2,7 @@
 import { getAllProjectsNames } from "@/actions/get-all-projects-names";
 import { setActiveProject } from "@/state-manager/features/project";
 import { RootState } from "@/state-manager/store";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import { PiSpinnerLight } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ const ProjectList = () => {
     queryFn: () => getAllProjectsNames(),
   });
 
+  const { invalidateQueries } = useQueryClient();
   const handleClick = (e: React.MouseEvent) => {
     const projectId = (e.target as HTMLButtonElement).getAttribute(
       "data-project-id"
@@ -25,6 +26,12 @@ const ProjectList = () => {
 
   useEffect(() => {
     if (projectNames) dispatch(setActiveProject(projectNames[0]?._id));
+
+    return () => {
+      invalidateQueries({
+        queryKey: ["project-names"],
+      });
+    };
   }, [isLoading]);
   return (
     <div className="flex gap-4 items-center text-sm" onClick={handleClick}>
