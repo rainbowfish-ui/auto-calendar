@@ -92,16 +92,18 @@ const TaskCard = ({
             ></div>
           </div>
           <div className="size-full text-[0.6rem] leading-3 pt-1 gap-1">
-            <p>Key Points:{keyPoints}</p>
-            {/* TODO: */}
-            {/* {keyPoints?.split(";")?.map((point, i) => {
-              return (
-                <div className="flex gap-1" key={"point" + i}>
-                  <TbPointFilled className="pt-1" />
-                  <p>{point}</p>
-                </div>
-              );
-            })} */}
+            <p>Key Points:</p>
+            {keyPoints
+              ?.toString()
+              .split(";")
+              ?.map((point, i) => {
+                return (
+                  <div className="flex gap-1" key={"point" + i}>
+                    <TbPointFilled className="pt-1" />
+                    <p>{point}</p>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
