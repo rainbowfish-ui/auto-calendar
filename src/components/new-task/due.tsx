@@ -7,7 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 const DueDate = () => {
   const { due } = useSelector((state: RootState) => state.newTaskForm);
   const dispatch = useDispatch();
+  const minDue = new Date().toISOString().split("T")[0];
+  const maxDue = new Date(new Date().setFullYear(new Date().getFullYear() + 10))
+    .toISOString()
+    .split("T")[0];
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     dispatch(setDue(e.target.value));
   };
   return (
@@ -18,7 +23,8 @@ const DueDate = () => {
         value={due}
         className="px-2 py-1 border rounded-md"
         onChange={handleChange}
-        min={new Date().toISOString().split("T")[0]}
+        min={minDue}
+        max={maxDue}
       />
     </div>
   );

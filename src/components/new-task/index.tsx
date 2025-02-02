@@ -2,17 +2,16 @@
 import Modal from "@/components/modal"; // Adjust path if necessary
 import Name from "./name";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNewProject } from "@/actions/create-new-project";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
 import { toast } from "sonner";
 import Context from "./context";
 import Priority from "./priority";
-import { setPriority, TaskForm } from "@/state-manager/features/new-task-form";
 import DueDate from "./due";
 import KeyPoints from "./key-points";
 import Status from "./status";
 import AssignTo from "./assign-to";
+import { createNewTask } from "@/actions/create-new-task";
 
 export default function NewTask({
   isNewTaskModalOpen,
@@ -21,13 +20,12 @@ export default function NewTask({
   isNewTaskModalOpen: boolean;
   setIsNewTaskModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { name } = useSelector((state: RootState) => state.newTaskForm);
-  const dispatch = useDispatch();
+  const newTask = useSelector((state: RootState) => state.newTaskForm);
 
   const queryClient = useQueryClient();
 
   const { mutate: handleCreate } = useMutation({
-    mutationFn: createNewProject,
+    mutationFn: createNewTask,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["project-names"] });
       toast.success("New task created");
@@ -40,10 +38,10 @@ export default function NewTask({
 
   const handleClick = (e: React.MouseEvent) => {
     const action = (e.target as HTMLElement).getAttribute("data-action");
-    console.log(action);
-    console.log("assas");
+
     if (action === "create-task") {
-      handleCreate({ name });
+      console.log(action);
+      handleCreate(newTask);
     }
   };
 

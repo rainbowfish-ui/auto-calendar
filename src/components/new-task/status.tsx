@@ -2,7 +2,7 @@
 import React from "react";
 import { RootState } from "@/state-manager/store";
 import { useDispatch, useSelector } from "react-redux";
-import { setPriority, TaskForm } from "@/state-manager/features/new-task-form";
+import { setStatus, TaskForm } from "@/state-manager/features/new-task-form";
 import { FaCheck } from "react-icons/fa";
 
 const Status = () => {
@@ -18,9 +18,9 @@ const Status = () => {
   const handleClick = (e: React.MouseEvent) => {
     const action = (e.target as HTMLElement).getAttribute("data-action");
     if (action === "set-status") {
-      const priority = (e.target as HTMLElement).getAttribute("data-priority");
-      if (!priority) return;
-      dispatch(setPriority(priority as TaskForm["priority"]));
+      const status = (e.target as HTMLElement).getAttribute("data-status");
+      if (!status) return;
+      dispatch(setStatus(status as TaskForm["status"]));
     }
   };
   return (
