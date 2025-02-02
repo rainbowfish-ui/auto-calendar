@@ -14,6 +14,7 @@ import AssignTo from "./assign-to";
 import { createNewTask } from "@/actions/create-new-task";
 import { setProject } from "@/state-manager/features/project";
 import { getProjectById } from "@/actions/get-project-by-id";
+import { PiSpinnerThin } from "react-icons/pi";
 
 export default function NewTask({
   isNewTaskModalOpen,
@@ -76,12 +77,12 @@ export default function NewTask({
           </div>
         </div>
         <button
-          className="px-4 py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold disabled:bg-gray-300"
+          className="px-4 py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
           onClick={handleClick}
           data-action="create-task"
           disabled={isPending}
         >
-          Create
+          {isPending ? <PiSpinnerThin className="animate-spin" /> : "Create"}
         </button>
       </div>
     </Modal>
