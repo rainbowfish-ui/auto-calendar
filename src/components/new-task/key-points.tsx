@@ -4,7 +4,7 @@ import { RootState } from "@/state-manager/store";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const Context = () => {
+const KeyPoints = () => {
   const { context } = useSelector((state: RootState) => state.newTaskForm);
   const dispatch = useDispatch();
 
@@ -13,9 +13,15 @@ const Context = () => {
   };
   return (
     <div className="flex flex-col gap-1 w-full">
-      <p className="font-semibold">Context</p>
+      <p className="font-semibold">
+        Key points
+        <span className="font-normal text-gray-600">
+          {" "}
+          (add ; after each point)
+        </span>
+      </p>
       <textarea
-        placeholder="Provide context to the AI"
+        placeholder="points to remember"
         className="outline-none border rounded-md p-2 w-full h-20 resize-none"
         onChange={handleChange}
         value={context}
@@ -24,4 +30,4 @@ const Context = () => {
   );
 };
 
-export default Context;
+export default KeyPoints;
