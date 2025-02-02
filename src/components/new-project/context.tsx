@@ -15,7 +15,7 @@ const Context = () => {
     <div className="flex flex-col gap-1">
       <p className="font-semibold">Context</p>
       <textarea
-        placeholder="context"
+        placeholder="Provide context to the AI"
         className="outline-none border rounded-md p-2 w-full h-24 resize-none"
         onChange={handleChange}
         value={context}
