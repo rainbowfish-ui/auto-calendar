@@ -31,7 +31,7 @@ const Sidebar = () => {
     <div className="w-16 h-full bg-[#F4F5F7] flex flex-col items-center justify-start py-4 gap-6 border-r z-50">
       <PiShootingStarLight size={30} />
       <nav className="size-full flex flex-col gap-2 items-start p-2">
-        {navItems.map(({ href, icon: Icon, name }) => {
+        {navItems?.map(({ href, icon: Icon, name }) => {
           return (
             <Link
               key={name}

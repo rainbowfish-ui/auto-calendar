@@ -27,7 +27,7 @@ const Status = () => {
     <div className="flex flex-col gap-1" onClick={handleClick}>
       <p className="font-semibold ">Status</p>
       <div className="w-full flex gap-2 items-center">
-        {statusTypes.map((status) => {
+        {statusTypes?.map((status) => {
           return (
             <button
               className={`px-2 py-1 border rounded-lg flex items-center gap-1 active:scale-95 transition-transform ${

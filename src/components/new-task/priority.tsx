@@ -23,7 +23,7 @@ const Priority = () => {
     <div className="flex flex-col gap-1" onClick={handleClick}>
       <p className="font-semibold ">Priority</p>
       <div className="w-full flex gap-2 items-center">
-        {priorities.map((priority) => {
+        {priorities?.map((priority) => {
           return (
             <button
               className={`px-2 py-1 border rounded-lg flex items-center gap-1 active:scale-95 transition-transform ${
