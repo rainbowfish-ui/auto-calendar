@@ -39,12 +39,21 @@ const taskForm = createSlice({
     setPriority: create.reducer<TaskForm["priority"]>((state, action) => {
       state.priority = action.payload;
     }),
+    setStatus: create.reducer<TaskForm["status"]>((state, action) => {
+      state.status = action.payload;
+    }),
     setDue: create.reducer<string>((state, action) => {
       state.due = action.payload;
     }),
   }),
 });
 
-export const { setName, setContext, setActiveTeamModal, setPriority, setDue } =
-  taskForm.actions;
+export const {
+  setName,
+  setContext,
+  setActiveTeamModal,
+  setPriority,
+  setDue,
+  setStatus,
+} = taskForm.actions;
 export default taskForm.reducer;

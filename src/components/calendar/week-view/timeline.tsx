@@ -3,7 +3,7 @@ import React from "react";
 const Timeline = () => {
   return (
     <div className="w-fit h-fit">
-      {new Array(24).fill(0).map((_, i) => {
+      {new Array(24).fill(0)?.map((_, i) => {
         const hour = i % 12 || 12;
         const period = i < 12 ? "AM" : "PM";
         return (

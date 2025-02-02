@@ -10,7 +10,7 @@ const MonthView = () => {
     <section className="size-full h-[80vh] flex">
       <div className="flex flex-col w-full">
         <div className="flex font-semibold">
-          {weekDays.map((day) => {
+          {weekDays?.map((day) => {
             return (
               <div
                 className="w-32 h-16 flex items-center justify-center border-[0.5px]"
@@ -22,8 +22,8 @@ const MonthView = () => {
           })}
         </div>
         <div className="grid grid-cols-7 grid-rows-5">
-          {currentMonth.map((week) => {
-            return week.map((day, index) => {
+          {currentMonth?.map((week) => {
+            return week?.map((day, index) => {
               return (
                 <div
                   key={day.format("D") + index}

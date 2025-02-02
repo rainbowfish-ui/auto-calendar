@@ -55,7 +55,7 @@ const TaskCard = ({
           <div>
             <p className="text-xs text-start pt-1">{name}</p>
             <div className="flex flex-wrap text-[0.5rem]">
-              {assignedTo.map((name, i) => {
+              {assignedTo?.map((name, i) => {
                 return (
                   <p
                     className="size-5 rounded-full border grid place-content-center uppercase"

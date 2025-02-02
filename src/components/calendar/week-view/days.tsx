@@ -8,7 +8,7 @@ const Days = () => {
 
   return (
     <div className="sticky top-0 w-fit h-16 flex font-semibold">
-      {daysInWeek.map((label, i) => {
+      {daysInWeek?.map((label, i) => {
         const isFirstColumn = i === 0;
         const day = isFirstColumn ? null : days[i - 1];
         const dayLabel = isFirstColumn

@@ -30,7 +30,7 @@ const ChangeCalendarViewButton = () => {
       </p>
       {viewSelector && (
         <div className="absolute bg-white border rounded-md flex flex-col items-center justify-center top-8 left-0 w-full z-10">
-          {views.map((view) => {
+          {views?.map((view) => {
             return (
               <p
                 className="border-b size-full flex items-center justify-center py-1"
