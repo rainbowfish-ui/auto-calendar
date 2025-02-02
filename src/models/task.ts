@@ -7,7 +7,7 @@ export interface ITask {
   priority: "Low" | "Medium" | "High";
   progress: number;
   due: string;
-  keyPoints: string[];
+  keyPoints: string;
   lastUpdate: string;
   lastUpdateBy: Types.ObjectId;
   lastUpdateOn: string;
