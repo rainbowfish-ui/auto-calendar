@@ -1,12 +1,8 @@
 "use client";
 import Modal from "@/components/modal";
 import Name from "./name";
-import {
-  useIsFetching,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
 import { toast } from "sonner";
 import Context from "./context";
@@ -16,7 +12,8 @@ import KeyPoints from "./key-points";
 import Status from "./status";
 import AssignTo from "./assign-to";
 import { createNewTask } from "@/actions/create-new-task";
-import { useEffect } from "react";
+import { setProject } from "@/state-manager/features/project";
+import { getProjectById } from "@/actions/get-project-by-id";
 
 export default function NewTask({
   isNewTaskModalOpen,
@@ -27,23 +24,21 @@ export default function NewTask({
 }) {
   const newTask = useSelector((state: RootState) => state.newTaskForm);
   const { activeProject } = useSelector((state: RootState) => state.project);
+  const dispatch = useDispatch();
 
   const queryClient = useQueryClient();
 
-  const isRefetchingCount = useIsFetching({
-    queryKey: ["active-projects", activeProject],
-  });
-  console.log("Refetching count:", isRefetchingCount);
-  const isRefetching = isRefetchingCount > 0;
-
-  const { mutate: handleCreate } = useMutation({
+  const { mutate: handleCreate, isPending } = useMutation({
     mutationFn: createNewTask,
-    onSettled: () => {
-      queryClient.refetchQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: ["active-projects", activeProject],
       });
-    },
-    onSuccess: () => {
+      const updatedProjects = await queryClient.fetchQuery({
+        queryKey: ["active-projects", activeProject],
+        queryFn: () => getProjectById(activeProject),
+      });
+      dispatch(setProject(updatedProjects));
       toast.success("New task created");
       setIsNewTaskModalOpen(false);
     },
@@ -61,12 +56,6 @@ export default function NewTask({
       handleCreate(newTask);
     }
   };
-
-  useEffect(() => {
-    if (isRefetching) {
-      toast.info("Fetching data...");
-    }
-  }, [isRefetching]);
 
   return (
     <Modal
@@ -87,9 +76,10 @@ export default function NewTask({
           </div>
         </div>
         <button
-          className="px-4 py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold"
+          className="px-4 py-2 bg-[#F9FAFC] border rounded-md active:scale-95 transition-transform font-semibold disabled:bg-gray-300"
           onClick={handleClick}
           data-action="create-task"
+          disabled={isPending}
         >
           Create
         </button>
