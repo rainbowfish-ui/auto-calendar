@@ -1,15 +1,8 @@
 "use server";
+import { TaskForm } from "@/state-manager/features/new-task-form";
 import { BASE_URL } from "./constants";
 
-export const createNewTeam = async (body: {
-  name: string;
-  status: string;
-  priority: string;
-  assignedTo: string;
-  progress: string;
-  due: string;
-  keyPoints: string;
-}) => {
+export const createNewTask = async (body: TaskForm) => {
   try {
     const response = await fetch(`${BASE_URL}/api/task`, {
       method: "POST",
