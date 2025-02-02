@@ -21,7 +21,12 @@ export const TaskSchema = new Schema<ITask>({
     enum: ["Not Started", "In Progress", "Completed"],
     default: "Not Started",
   },
-  priority: { type: String, enum: ["Low", "Medium", "High"], required: true },
+  priority: {
+    type: String,
+    enum: ["Low", "Medium", "High"],
+    required: true,
+    default: "Low",
+  },
   progress: { type: Number, min: 0, max: 100, default: 0 },
   due: { type: String, required: true },
   keyPoints: [{ type: String }],
