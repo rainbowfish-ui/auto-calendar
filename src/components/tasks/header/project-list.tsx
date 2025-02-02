@@ -15,7 +15,7 @@ const ProjectList = () => {
     queryFn: () => getAllProjectsNames(),
   });
 
-  const { invalidateQueries } = useQueryClient();
+  const queryClient = useQueryClient();
   const handleClick = (e: React.MouseEvent) => {
     const projectId = (e.target as HTMLButtonElement).getAttribute(
       "data-project-id"
@@ -28,7 +28,7 @@ const ProjectList = () => {
     if (projectNames) dispatch(setActiveProject(projectNames[0]?._id));
 
     return () => {
-      invalidateQueries({
+      queryClient?.invalidateQueries({
         queryKey: ["project-names"],
       });
     };
