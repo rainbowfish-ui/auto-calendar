@@ -3,18 +3,26 @@ import Project from "@/models/project";
 import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 import Team from "@/models/team";
+import Task from "@/models/task";
 
 export const GET = async (req: NextRequest) => {
   try {
     await connectToDatabase();
-    Team; // load schema
+    // load schema
+    Team;
+    Task;
 
     const projectId = req.nextUrl.searchParams.get("projectId");
     if (!projectId || !mongoose.Types.ObjectId.isValid(projectId)) {
       return NextResponse.json({ error: "Invalid projectId" }, { status: 400 });
     }
 
-    const project = await Project.findById(projectId).populate("teams");
+    const project = await Project.findById(projectId).populate({
+      path: "teams",
+      populate: {
+        path: "tasks",
+      },
+    });
 
     if (!project) {
       return NextResponse.json({ error: "Project not found" }, { status: 404 });

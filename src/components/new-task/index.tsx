@@ -1,7 +1,11 @@
 "use client";
-import Modal from "@/components/modal"; // Adjust path if necessary
+import Modal from "@/components/modal";
 import Name from "./name";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useIsFetching,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
 import { toast } from "sonner";
@@ -12,6 +16,7 @@ import KeyPoints from "./key-points";
 import Status from "./status";
 import AssignTo from "./assign-to";
 import { createNewTask } from "@/actions/create-new-task";
+import { useEffect } from "react";
 
 export default function NewTask({
   isNewTaskModalOpen,
@@ -21,18 +26,30 @@ export default function NewTask({
   setIsNewTaskModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const newTask = useSelector((state: RootState) => state.newTaskForm);
+  const { activeProject } = useSelector((state: RootState) => state.project);
 
   const queryClient = useQueryClient();
 
+  const isRefetchingCount = useIsFetching({
+    queryKey: ["active-projects", activeProject],
+  });
+  console.log("Refetching count:", isRefetchingCount);
+  const isRefetching = isRefetchingCount > 0;
+
   const { mutate: handleCreate } = useMutation({
     mutationFn: createNewTask,
+    onSettled: () => {
+      queryClient.refetchQueries({
+        queryKey: ["active-projects", activeProject],
+      });
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["project-names"] });
       toast.success("New task created");
       setIsNewTaskModalOpen(false);
     },
     onError: (error) => {
-      console.error("Failed to create project:", error);
+      console.error("Failed to create task:", error);
+      toast.error("Failed to create task");
     },
   });
 
@@ -40,10 +57,16 @@ export default function NewTask({
     const action = (e.target as HTMLElement).getAttribute("data-action");
 
     if (action === "create-task") {
-      console.log(action);
+      console.log("Creating task:", newTask);
       handleCreate(newTask);
     }
   };
+
+  useEffect(() => {
+    if (isRefetching) {
+      toast.info("Fetching data...");
+    }
+  }, [isRefetching]);
 
   return (
     <Modal
