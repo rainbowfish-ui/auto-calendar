@@ -4,9 +4,9 @@ export type TaskForm = {
   id: string;
   name: string;
   context: string;
-  priority: "HIGH" | "MEDIUM" | "LOW";
+  priority: "High" | "Medium" | "Low";
   status: "Not Started" | "In Progress" | "Completed";
-  keyPoints: string[];
+  keyPoints: string;
   members: string[];
   activeTeamId?: string;
   due: string;
@@ -14,11 +14,11 @@ export type TaskForm = {
 
 const initialState: TaskForm = {
   id: "",
-  keyPoints: [],
+  keyPoints: "",
   members: [],
   name: "",
   context: "",
-  priority: "LOW",
+  priority: "Low",
   due: new Date().toISOString(),
   status: "Not Started",
 };
@@ -45,6 +45,9 @@ const taskForm = createSlice({
     setDue: create.reducer<string>((state, action) => {
       state.due = action.payload;
     }),
+    setKeyPoints: create.reducer<string>((state, action) => {
+      state.keyPoints = action.payload;
+    }),
   }),
 });
 
@@ -55,5 +58,6 @@ export const {
   setPriority,
   setDue,
   setStatus,
+  setKeyPoints,
 } = taskForm.actions;
 export default taskForm.reducer;

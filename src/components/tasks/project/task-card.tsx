@@ -32,7 +32,7 @@ const TaskCard = ({
   priority: string;
   lastUpdateOn: string;
   progress: string;
-  keyPoints: string[];
+  keyPoints: string;
 }) => {
   return (
     <article
@@ -93,7 +93,7 @@ const TaskCard = ({
           </div>
           <div className="size-full text-[0.6rem] leading-3 pt-1 gap-1">
             <p>Key Points:</p>
-            {keyPoints?.map((point, i) => {
+            {keyPoints?.split(";")?.map((point, i) => {
               return (
                 <div className="flex gap-1" key={"point" + i}>
                   <TbPointFilled className="pt-1" />
