@@ -7,6 +7,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNewTeam } from "@/actions/create-new-team";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state-manager/store";
+import { isPending } from "@reduxjs/toolkit";
+import { PiSpinnerThin } from "react-icons/pi";
 
 export default function NewTeam({
   isNewTeamModalOpen,
@@ -21,7 +23,7 @@ export default function NewTeam({
   const { activeProject } = useSelector((state: RootState) => state.project);
   const queryClient = useQueryClient();
 
-  const { mutate: handleCreate } = useMutation({
+  const { mutate: handleCreate, isPending } = useMutation({
     mutationFn: createNewTeam,
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -56,8 +58,9 @@ export default function NewTeam({
               context,
             });
           }}
+          disabled={isPending}
         >
-          Create
+          {isPending ? <PiSpinnerThin className="animate-spin" /> : "Create"}
         </button>
       </div>
     </Modal>
