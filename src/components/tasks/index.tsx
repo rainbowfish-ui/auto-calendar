@@ -38,6 +38,13 @@ const Tasks = () => {
   ) {
     if (!localProject) return;
 
+    if (
+      from.fromTeam === to.toTeam &&
+      (from.index === to.index - 1 || from.index === to.index)
+    ) {
+      return;
+    }
+
     const updatedTeams = [...localProject.teams];
     const sourceTeam = {
       ...updatedTeams[from.fromTeam],
