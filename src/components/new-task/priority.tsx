@@ -6,7 +6,7 @@ import { setPriority, TaskForm } from "@/state-manager/features/new-task-form";
 import { FaCheck } from "react-icons/fa";
 
 const Priority = () => {
-  const priorities: TaskForm["priority"][] = ["LOW", "MEDIUM", "HIGH"];
+  const priorities: TaskForm["priority"][] = ["Low", "Medium", "High"];
   const { priority: currentPriority } = useSelector(
     (state: RootState) => state.newTaskForm
   );
