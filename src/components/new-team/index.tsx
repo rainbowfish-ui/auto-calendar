@@ -27,12 +27,12 @@ export default function NewTeam({
       queryClient.invalidateQueries({
         queryKey: ["active-project", activeProject],
       });
-      toast.success("New project created");
+      toast.success("New team created");
       setIsNewTeamModalOpen(false);
     },
     onError: (error) => {
-      console.error("Failed to create project:", error);
-      toast.error("Failed to create project. Please try again.");
+      console.error("Failed to create team:", error);
+      toast.error("Failed to create team. Please try again.");
     },
   });
 
